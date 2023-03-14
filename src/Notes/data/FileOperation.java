@@ -16,7 +16,7 @@ public class FileOperation implements IFileOperation{
             System.out.println(ex.getMessage());
         }
     }
-    @Override
+
     public List<String> readAllLines() {
         List<String> lines = new ArrayList<>();
         try {
@@ -42,12 +42,11 @@ public class FileOperation implements IFileOperation{
         return lines;
     }
 
-    @Override
     public void saveAllLines(List<String> lines) {
         try (FileWriter writer = new FileWriter(fileName, false)) {
             for (String line : lines) {
                 writer.write(line);
-                writer.append("\n");
+                writer.append('\n');
             }
             writer.flush();
         } catch (IOException ex) {

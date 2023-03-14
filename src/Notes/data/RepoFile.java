@@ -5,12 +5,12 @@ import java.util.List;
 
 public class RepoFile implements IRepo {
     private NoteMapper mapper = new NoteMapper();
+    private FileOperation fileOperation;
 
     public RepoFile(FileOperation fileOperation) {
         this.fileOperation = fileOperation;
     }
 
-    private FileOperation fileOperation;
     @Override
     public List<Note> getAllNotes() {
         List<String> lines = fileOperation.readAllLines();
@@ -36,10 +36,9 @@ public class RepoFile implements IRepo {
         note.setId(id);
         notes.add(note);
         saveNotes(notes);
-        return null;
+        return id;
     }
 
-    @Override
     public void saveNotes(List<Note> notes) {
         List<String> lines = new ArrayList<>();
         for (Note item: notes) {
